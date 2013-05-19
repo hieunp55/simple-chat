@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Simple Chat</title>
+		<link rel="stylesheet" href="css/styles.css" >
+		<style>
+			canvas{
+				position: relative;
+				background: #FFFFFF;
+			}
+			test{
+				position: relative;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<h1>Simple Chat</h1>
+			<div id="messages"></div>
+			<div class="nic">
+				Your Name
+				<input id="name" name="name" type="text"/>
+			</div>
+			<textarea id="message"></textarea>
+			<input id="send" type="submit" value="Send"/>
+		</div>
+		<canvas id='drawing-pad' width='500' height='400'>
+		
+		</canvas>
+		<div id="test" style="width: 100px;height: 50px">Testing</div>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/chat.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				Chat.initialize('http://localhost/');				
+			});
+		</script>
+	</body>
+</html>

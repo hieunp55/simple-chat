@@ -1,0 +1,72 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Simple Chat</title>
+		<link rel="stylesheet" href="css/styles.css" >
+		<style>
+			canvas{
+				position: relative;
+				background: #FFFFFF;
+			}
+			test{
+				position: relative;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<div id="wrapper">
+			<h1>Simple Chat</h1>
+			<div id="messages"></div>
+			<div class="nic">
+				Your Name
+				<input id="name" name="name" type="text"/>
+			</div>
+			<textarea id="message"></textarea>
+			<input id="send" type="submit" value="Send"/>
+		</div>
+		<canvas id='drawing-pad' width='500' height='400'>
+		
+		</canvas>
+		<div id="test" style="width: 100px;height: 50px">Testing</div>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/socket.io.js"></script>
+		<script type="text/javascript" src="js/chat.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				Chat.initialize('http://localhost/');
+				//The logic of drawing on canvas
+				$("#drawing-pad").mousedown(function(e){
+					//get the mouse x and y relative to the canvas top-left point.
+					websocketGame.startX = e.pageX - this.offsetLeft;
+					websocketGame.startY = e.pageY - this.offsetTop;
+					
+					websocketGame.isDrawing = true;
+				});
+				
+				$("#drawing-pad").mousemove(function(e){
+					//draw lines when is drawing
+					if(websocketGame.isDrawing){
+						//get the mouse x and y relative to othe canvas top-left point
+						var mouseX = e.pageX - this.offsetLeft;
+						var mouseY = e.pageY - this.offsetTop;
+						var info = document.getElementById ("test");
+						
+						if(!(mouseX == websocketGame.startX 
+								&& mouseY == websocketGame.startY)){
+							drawLine(ctx, websocketGame.startX, websocketGame.startY,mouseX, mouseY, 4);
+							websocketGame.startX = mouseX;
+							websocketGame.startY = mouseY;
+							info.innerHTML = "layerX: " + mouseX + " layerY: " + mouseY;
+						}	
+					}
+				});
+				
+				$("#drawing-pad").mouseup(function(e){
+					websocketGame.isDrawing = false;
+				});
+				
+			});
+		</script>
+	</body>
+</html>

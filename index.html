@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>Multiplayer Drawing Game</title>
+    <!-- The stylesheets -->
+	<link rel="stylesheet" type="text/css" href="css/stylesDraw.css"/>
+  </head>
+  
+  <body>
+    <div id="cursors">
+		<!--The mouse pointers will be created here!-->
+	</div>
+    
+	<canvas id="paper" width="600" height="400">
+		Your browser needs to support canvas for this to work!
+	</canvas>
+	
+	<hgroup id+"instructions">
+		<h1>Draw anywhere!</h1>
+		<h2>You will see everyone else who's doing the same.</h2>
+		<h3>Tip: if the stage gets dirty, simply reload the page</h3>
+	</hgroup>
+	
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="js/socket.io.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+  </body>
+</html>
